@@ -1,10 +1,11 @@
 import {
     update as updateSnake,
     draw as drawSnake,
-    SNAKE_SPEED,
     getSnakeHead,
     snakeIntersection,
 } from "./snake.js";
+
+import { config } from "./config.js";
 
 import { update as updateFood, draw as drawFood } from "./food.js";
 
@@ -13,6 +14,9 @@ import { outsideGrid } from "./grid.js";
 let lastRenderTime = 0;
 let gameOver = false;
 const gameBoard = document.getElementById("game-board");
+
+gameBoard.style.gridTemplateRows = `repeat(${config.GRID_SIZE}, 1fr)`;
+gameBoard.style.gridTemplateColumns = `repeat(${config.GRID_SIZE}, 1fr)`;
 
 function main(currentTime) {
     if (gameOver) {
@@ -24,7 +28,7 @@ function main(currentTime) {
 
     window.requestAnimationFrame(main);
     const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
-    if (secondsSinceLastRender < 1 / SNAKE_SPEED) return;
+    if (secondsSinceLastRender < 1 / config.SNAKE_SPEED) return;
 
     lastRenderTime = currentTime;
 

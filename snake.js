@@ -1,7 +1,9 @@
 import { getInputDirection } from "./input.js";
+import { config } from "./config.js";
 
-export const SNAKE_SPEED = 5;
-const snakeBody = [{ x: 11, y: 11 }];
+const snakeBody = [
+    { x: Math.ceil(config.GRID_SIZE / 2), y: Math.ceil(config.GRID_SIZE / 2) },
+];
 let newSegments = 0;
 
 export function update() {
